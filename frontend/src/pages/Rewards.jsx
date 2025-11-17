@@ -13,12 +13,12 @@ const Rewards = () => {
       {/* ================= HERO BANNER ================= */}
       <section className="bg-gradient-to-br from-emerald-900 to-green-800 text-white py-28 text-center">
         <h1 className="text-5xl font-extrabold drop-shadow-lg">
-          Verdant Rewards
+          Caffinity Rewards
         </h1>
 
         <p className="mt-5 text-lg max-w-3xl mx-auto text-gray-200 leading-relaxed">
           Earn stars with every sip. Unlock exclusive perks, premium tiers, and
-          special treats crafted just for our Verdant members.
+          special treats crafted just for our Caffinity members.
         </p>
       </section>
 

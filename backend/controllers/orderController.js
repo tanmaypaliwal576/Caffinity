@@ -1,5 +1,4 @@
 import Order from "../models/Order.js";
-import { addStars } from "./rewardController.js";
 
 // CREATE ORDER
 export const createOrder = async (req, res) => {
@@ -17,9 +16,6 @@ export const createOrder = async (req, res) => {
       items,
       totalAmount,
     });
-
-    // ⭐ Add reward stars (1 star = $1)
-    await addStars(req.user.id, Math.floor(totalAmount));
 
     res.json({ message: "Order placed", order });
   } catch (error) {

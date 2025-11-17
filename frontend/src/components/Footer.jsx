@@ -13,9 +13,9 @@ export default function Footer() {
             <img
               src={logo}
               className="h-12 w-12 drop-shadow-lg"
-              alt="Verdant"
+              alt="Caffinity"
             />
-            <h2 className="text-3xl font-bold tracking-wide">Verdant</h2>
+            <h2 className="text-3xl font-bold tracking-wide">Caffinity</h2>
           </Link>
 
           <p className="text-gray-300 mt-4 leading-relaxed max-w-sm">
@@ -109,7 +109,7 @@ export default function Footer() {
 
       {/* ======= COPYRIGHT ======= */}
       <p className="text-center text-gray-400 text-sm">
-        © {new Date().getFullYear()} Verdant Coffee. Crafted with love ☕
+        © {new Date().getFullYear()} Caffinity Coffee. Crafted with love ☕
       </p>
     </footer>
   );
