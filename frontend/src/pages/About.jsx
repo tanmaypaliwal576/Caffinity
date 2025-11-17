@@ -26,7 +26,7 @@ const About = () => {
           <h2 className="text-4xl font-bold text-emerald-900">Our Mission</h2>
 
           <p className="mt-6 text-gray-700 leading-relaxed text-lg">
-            At Verdant, we believe coffee is more than just a beverage—it’s a
+            At Caffinity, we believe coffee is more than just a beverage—it’s a
             connection between people, cultures, and the earth. Founded in 2020,
             our journey began with a simple vision: to create a coffee
             experience that honors both the craft of brewing and the communities

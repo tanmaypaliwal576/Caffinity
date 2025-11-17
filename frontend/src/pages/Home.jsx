@@ -1,13 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { FaLeaf, FaHeart, FaMugHot, FaArrowRight } from "react-icons/fa";
 
-// Import images correctly
+// Import images
 import heroBg from "../assets/home-bg.png";
 import matcha from "../assets/matcha.png";
 import caramel from "../assets/caramel.png";
 import coldbrew from "../assets/coldbrew.png";
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="w-full overflow-x-hidden font-sans">
       {/* ================= HERO SECTION ================= */}
@@ -15,10 +18,9 @@ const Home = () => {
         className="relative w-full h-[90vh] bg-cover bg-center flex items-center"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
-        {/* Dim cinematic overlay */}
+        {/* Cinematic overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/40"></div>
 
-        {/* Content */}
         <div className="relative z-10 max-w-xl pl-20 animate-fadeInUp">
           <h1 className="text-6xl font-bold text-white leading-tight drop-shadow-lg">
             Every Sip <br /> Tells a Story
@@ -29,14 +31,19 @@ const Home = () => {
             nature’s finest flavors.
           </p>
 
-          {/* Buttons */}
           <div className="flex gap-4 mt-8">
-            <button className="px-8 py-3 bg-emerald-700 hover:bg-emerald-800 text-white rounded-full shadow-md transition transform hover:scale-[1.05]">
+            <button
+              onClick={() => navigate("/menu")}
+              className="px-8 py-3 bg-emerald-700 hover:bg-emerald-800 text-white rounded-full shadow-md transition transform hover:scale-[1.05]"
+            >
               Explore Menu →
             </button>
 
-            <button className="px-8 py-3 bg-white/20 border border-white text-white hover:bg-white/30 rounded-full shadow-md transition transform hover:scale-[1.05]">
-              Join Rewards →
+            <button
+              onClick={() => navigate("/rewards")}
+              className="px-8 py-3 bg-white/20 border border-white text-white hover:bg-white/30 rounded-full shadow-md transition transform hover:scale-[1.05]"
+            >
+              Know About Rewards →
             </button>
           </div>
         </div>
@@ -55,7 +62,6 @@ const Home = () => {
           {/* Card 1 */}
           <div className="bg-white rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden transition">
             <img src={matcha} className="w-full h-72 object-cover" />
-
             <div className="p-6">
               <h3 className="text-xl font-semibold text-emerald-900">
                 Matcha Latte
@@ -63,10 +69,12 @@ const Home = () => {
               <p className="text-gray-600 mt-1 text-sm">
                 Smooth ceremonial-grade matcha with silky steamed milk.
               </p>
-
               <div className="flex justify-between items-center mt-4">
-                <span className="text-lg font-bold">$5.95</span>
-                <button className="px-4 py-2 rounded-full bg-emerald-700 text-white hover:bg-emerald-800 flex items-center gap-2">
+                <span className="text-lg font-bold">₹340</span>
+                <button
+                  onClick={() => navigate("/menu")}
+                  className="px-4 py-2 rounded-full bg-emerald-700 text-white hover:bg-emerald-800 flex items-center gap-2"
+                >
                   Order <FaArrowRight />
                 </button>
               </div>
@@ -76,19 +84,19 @@ const Home = () => {
           {/* Card 2 */}
           <div className="bg-white rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden transition">
             <img src={caramel} className="w-full h-72 object-cover" />
-
             <div className="p-6">
               <h3 className="text-xl font-semibold text-emerald-900">
                 Caramel Macchiato
               </h3>
               <p className="text-gray-600 mt-1 text-sm">
-                Espresso with vanilla & caramel, finished with a caramel
-                drizzle.
+                Espresso with vanilla & caramel, topped with drizzle.
               </p>
-
               <div className="flex justify-between items-center mt-4">
-                <span className="text-lg font-bold">$5.45</span>
-                <button className="px-4 py-2 rounded-full bg-emerald-700 text-white hover:bg-emerald-800 flex items-center gap-2">
+                <span className="text-lg font-bold">₹299</span>
+                <button
+                  onClick={() => navigate("/menu")}
+                  className="px-4 py-2 rounded-full bg-emerald-700 text-white hover:bg-emerald-800 flex items-center gap-2"
+                >
                   Order <FaArrowRight />
                 </button>
               </div>
@@ -98,18 +106,19 @@ const Home = () => {
           {/* Card 3 */}
           <div className="bg-white rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden transition">
             <img src={coldbrew} className="w-full h-72 object-cover" />
-
             <div className="p-6">
               <h3 className="text-xl font-semibold text-emerald-900">
                 Cold Brew
               </h3>
               <p className="text-gray-600 mt-1 text-sm">
-                Slow-steeped for 20 hours, smooth & naturally sweet.
+                Slow-steeped for 20 hours — smooth & bold.
               </p>
-
               <div className="flex justify-between items-center mt-4">
-                <span className="text-lg font-bold">$4.95</span>
-                <button className="px-4 py-2 rounded-full bg-emerald-700 text-white hover:bg-emerald-800 flex items-center gap-2">
+                <span className="text-lg font-bold">₹260</span>
+                <button
+                  onClick={() => navigate("/menu")}
+                  className="px-4 py-2 rounded-full bg-emerald-700 text-white hover:bg-emerald-800 flex items-center gap-2"
+                >
                   Order <FaArrowRight />
                 </button>
               </div>
@@ -149,14 +158,16 @@ const Home = () => {
 
       {/* ================= JOIN CTA ================= */}
       <section className="py-28 bg-emerald-900 text-white text-center">
-        <h2 className="text-4xl font-bold">Join Verdant Rewards</h2>
-
+        <h2 className="text-4xl font-bold">Know More About Rewards</h2>
         <p className="mt-3 max-w-2xl mx-auto text-gray-200">
           Earn points with every purchase and unlock exclusive perks.
         </p>
 
-        <button className="mt-8 px-10 py-3 bg-white text-emerald-800 rounded-full text-lg font-semibold hover:bg-neutral-200 transition flex items-center gap-2 mx-auto">
-          Get Started <FaArrowRight />
+        <button
+          onClick={() => navigate("/rewards")}
+          className="mt-8 px-10 py-3 bg-white text-emerald-800 rounded-full text-lg font-semibold hover:bg-neutral-200 transition flex items-center gap-2 mx-auto"
+        >
+          View Rewards <FaArrowRight />
         </button>
       </section>
     </div>
