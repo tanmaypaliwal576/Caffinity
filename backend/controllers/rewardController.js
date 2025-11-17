@@ -1,100 +1,65 @@
-import Reward from "../models/Reward.js";
+import Reward from "../models/reward.js";
+import User from "../models/userModel.js";
 
-// =========================
-// STATIC TIER DATA
-// =========================
-const tiers = [
-  {
-    name: "Green",
-    range: "0-24 stars",
-    min: 0,
-    max: 24,
-    benefits: ["Earn stars on purchases", "Birthday reward", "Order ahead"],
-  },
-  {
-    name: "Gold",
-    range: "25-99 stars",
-    min: 25,
-    max: 99,
-    benefits: [
-      "All Green benefits",
-      "Free drink every 25 stars",
-      "Exclusive offers",
-    ],
-  },
-  {
-    name: "Platinum",
-    range: "100+ stars",
-    min: 100,
-    max: 9999,
-    benefits: [
-      "All Gold benefits",
-      "Priority service",
-      "Early product access",
-      "VIP events",
-    ],
-  },
-];
-
-// Helper function to detect tier
-const calculateTier = (stars) => {
+// Auto-update tier based on stars
+const updateTier = (stars) => {
   if (stars >= 100) return "Platinum";
   if (stars >= 25) return "Gold";
   return "Green";
 };
 
-// =========================
-// GET ALL TIERS (STATIC)
-// =========================
-export const getRewardTiers = (req, res) => {
-  res.status(200).json(tiers);
-};
-
-// =========================
-// GET USER REWARDS
-// =========================
+// ✔ GET USER REWARD DATA
 export const getUserRewards = async (req, res) => {
   try {
-    let reward = await Reward.findOne({ user: req.user.id });
+    const reward = await Reward.findOne({ user: req.user.id });
 
-    // Create reward record if not exists
     if (!reward) {
-      reward = await Reward.create({ user: req.user.id });
+      return res.status(404).json({ message: "Reward record not found" });
     }
 
-    res.status(200).json(reward);
+    res.json(reward);
   } catch (error) {
-    res.status(500).json({ message: "Server error", error: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
-// =========================
-// ADD REWARD POINTS
-// =========================
-export const addRewardPoints = async (req, res) => {
+// ✔ ADD STARS (called when order is placed)
+export const addStars = async (userId, starsToAdd) => {
   try {
-    const { points } = req.body;
-
-    if (!points) {
-      return res.status(400).json({ message: "Points value is required" });
-    }
-
-    let reward = await Reward.findOne({ user: req.user.id });
+    let reward = await Reward.findOne({ user: userId });
 
     if (!reward) {
-      reward = await Reward.create({ user: req.user.id });
+      reward = await Reward.create({ user: userId });
     }
 
-    reward.stars += points;
-    reward.tier = calculateTier(reward.stars);
+    reward.stars += starsToAdd;
+    reward.tier = updateTier(reward.stars);
+
+    await reward.save();
+    return reward;
+  } catch (error) {
+    console.log("Error adding stars:", error);
+  }
+};
+
+// ✔ REDEEM STARS (e.g., free drink)
+export const redeemStars = async (req, res) => {
+  try {
+    const { stars } = req.body;
+
+    const reward = await Reward.findOne({ user: req.user.id });
+
+    if (!reward || reward.stars < stars) {
+      return res.status(400).json({ message: "Not enough stars" });
+    }
+
+    reward.stars -= stars;
+    reward.tier = updateTier(reward.stars);
 
     await reward.save();
 
-    res.status(200).json({
-      message: "Reward points added",
-      reward,
-    });
+    res.json({ message: "Reward redeemed successfully", reward });
   } catch (error) {
-    res.status(500).json({ message: "Server error", error: error.message });
+    res.status(500).json({ message: error.message });
   }
 };

@@ -7,7 +7,7 @@ import {
   deleteProduct,
 } from "../controllers/productController.js";
 
-import { protect } from "../middlewares/authMiddleware.js";
+import { authMiddleware } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
@@ -16,8 +16,8 @@ router.get("/", getProducts);
 router.get("/:id", getProductById);
 
 // Protected Routes (only YOU can use these via Postman)
-router.post("/", protect, createProduct);
-router.put("/:id", protect, updateProduct);
-router.delete("/:id", protect, deleteProduct);
+router.post("/", authMiddleware, createProduct);
+router.put("/:id", authMiddleware, updateProduct);
+router.delete("/:id", authMiddleware, deleteProduct);
 
 export default router;

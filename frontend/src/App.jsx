@@ -1,28 +1,30 @@
-import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-// Pages
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
-import Reward from "./pages/Reward";
+import Rewards from "./pages/Rewards";
 import About from "./pages/About";
+import Auth from "./pages/Auth";
+import { Routes, Route } from "react-router-dom";
 
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8f6f1]">
+    <>
+      {/* NAVBAR */}
       <Navbar />
 
-      <main className="flex-grow">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/rewards" element={<Reward />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
-      </main>
+      {/* ROUTES */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/rewards" element={<Rewards />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/auth" element={<Auth />} />
+      </Routes>
 
+      {/* FOOTER */}
       <Footer />
-    </div>
+    </>
   );
 }

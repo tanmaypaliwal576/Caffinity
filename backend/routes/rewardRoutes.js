@@ -1,20 +1,16 @@
 import express from "express";
-import { protect } from "../middleware/authMiddleware.js";
 import {
-  getRewardTiers,
   getUserRewards,
-  addRewardPoints,
+  redeemStars,
 } from "../controllers/rewardController.js";
+import { authMiddleware } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
-// GET Tiers (public)
-router.get("/tiers", getRewardTiers);
+// GET user's reward info
+router.get("/", authMiddleware, getUserRewards);
 
-// GET User Reward Info (logged in)
-router.get("/my-rewards", protect, getUserRewards);
-
-// Add Reward Points (logged in)
-router.post("/add", protect, addRewardPoints);
+// Redeem reward
+router.post("/redeem", authMiddleware, redeemStars);
 
 export default router;
