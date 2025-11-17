@@ -31,22 +31,22 @@ export default function Payment() {
   };
 
   const handlePayment = async () => {
-    // 1. Check all fields are filled
+    // 1. Check empty fields
     for (let key in form) {
-      if (!form[key].trim()) {
+      if (!String(form[key]).trim()) {
         toast.error("All fields are required");
         return;
       }
     }
 
-    // 2. Validate email format
+    // 2. Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(form.email)) {
       toast.error("Enter a valid email address");
       return;
     }
 
-    // 3. Card Number (12 digits)
+    // 3. Card number (12 digits)
     if (!/^\d{12}$/.test(form.cardNumber)) {
       toast.error("Card Number must be exactly 12 digits");
       return;
@@ -58,34 +58,34 @@ export default function Payment() {
       return;
     }
 
-    // 5. Expiry (MM/YY)
+    // 5. Expiry format
     if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(form.expiry)) {
-      toast.error("Expiry must be in MM/YY format");
+      toast.error("Expiry must be MM/YY");
       return;
     }
 
-    // 6. ZIP Code numeric
+    // 6. ZIP numeric
     if (!/^\d+$/.test(form.zip)) {
       toast.error("ZIP Code must be numeric");
       return;
     }
 
-    // 7. City, state, name must be letters only
-    const letterOnly = /^[A-Za-z ]+$/;
-    if (!letterOnly.test(form.name)) {
-      toast.error("Name must contain alphabets only");
+    // 7. Letters-only fields
+    const letters = /^[A-Za-z ]+$/;
+
+    if (!letters.test(form.name)) {
+      toast.error("Name can contain only letters");
       return;
     }
-    if (!letterOnly.test(form.city)) {
-      toast.error("City must contain alphabets only");
+    if (!letters.test(form.city)) {
+      toast.error("City can contain only letters");
       return;
     }
-    if (!letterOnly.test(form.state)) {
-      toast.error("State must contain alphabets only");
+    if (!letters.test(form.state)) {
+      toast.error("State can contain only letters");
       return;
     }
 
-    // If validation passes →
     try {
       const token = localStorage.getItem("token");
       if (!token) {
@@ -93,8 +93,11 @@ export default function Payment() {
         return navigate("/auth");
       }
 
+      // ---------------------------
+      // API Request (NO BASE_URL)
+      // ---------------------------
       await axios.post(
-        "http://localhost:3000/api/orders",
+        `/api/orders`,
         { items: cart },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -103,8 +106,8 @@ export default function Payment() {
       toast.success("Payment Successful!");
 
       setTimeout(() => navigate("/order-success"), 800);
-    } catch {
-      toast.error("Payment failed");
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Payment failed");
     }
   };
 
@@ -114,7 +117,6 @@ export default function Payment() {
         Checkout & Payment
       </h1>
 
-      {/* MAIN GRID */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-14">
         {/* LEFT SIDE */}
         <div className="lg:col-span-2 space-y-14">
@@ -127,7 +129,6 @@ export default function Payment() {
               </h2>
             </div>
 
-            {/* Inputs Larger */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <input
                 className="w-full h-14 border rounded-xl px-5 text-lg"
@@ -205,7 +206,7 @@ export default function Payment() {
           </div>
         </div>
 
-        {/* ORDER SUMMARY */}
+        {/* RIGHT SIDE — ORDER SUMMARY */}
         <div className="bg-white shadow-xl p-10 rounded-3xl h-fit">
           <h2 className="text-3xl font-semibold text-emerald-900 mb-6">
             Order Summary
@@ -236,8 +237,7 @@ export default function Payment() {
 
           <button
             onClick={handlePayment}
-            className="w-full mt-10 bg-emerald-700 hover:bg-emerald-800 
-                       text-white text-xl py-4 rounded-xl transition"
+            className="w-full mt-10 bg-emerald-700 hover:bg-emerald-800 text-white text-xl py-4 rounded-xl transition"
           >
             Pay Now
           </button>

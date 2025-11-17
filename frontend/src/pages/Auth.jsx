@@ -15,8 +15,6 @@ const Auth = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const BASE_URL = "http://localhost:3000"; // BACKEND PORT
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -29,34 +27,29 @@ const Auth = () => {
       let response;
 
       if (isLogin) {
-        // LOGIN
-        response = await axios.post(`${BASE_URL}/api/auth/login`, {
+        response = await axios.post(`/api/auth/login`, {
           email: formData.email,
           password: formData.password,
         });
 
         toast.success("Login successful!");
       } else {
-        // SIGNUP
-        response = await axios.post(`${BASE_URL}/api/auth/signup`, {
+        response = await axios.post(`/api/auth/signup`, {
           name: formData.name,
           email: formData.email,
           password: formData.password,
         });
 
         toast.success("Signup successful! Please log in.");
-        setIsLogin(true); // Switch to login form
+        setIsLogin(true);
         setLoading(false);
-        return; // stop here — don't store token
+        return;
       }
 
-      // Save token & user (only for login)
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user));
 
-      // Update navbar instantly
       window.dispatchEvent(new Event("storageUpdate"));
-
       navigate("/");
     } catch (error) {
       toast.error(error.response?.data?.message || "Something went wrong");
@@ -68,73 +61,62 @@ const Auth = () => {
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#0b3b2e] to-[#0e2d22] flex items-center justify-center px-4">
       <div className="bg-white w-full max-w-md p-10 rounded-2xl shadow-xl text-center">
-        {/* Logo Icon */}
         <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
           <FaCoffee className="text-3xl text-emerald-700" />
         </div>
 
-        {/* Title */}
         <h2 className="text-2xl font-bold mb-1">
           {isLogin ? "Welcome Back" : "Create Account"}
         </h2>
 
         <p className="text-gray-600 mb-6">
           {isLogin
-            ? "Sign in to your account to continue"
+            ? "Sign in to continue"
             : "Sign up to get started with Caffinity Coffee"}
         </p>
 
-        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           {!isLogin && (
             <input
               type="text"
               name="name"
-              placeholder="Full Name"
               required
+              placeholder="Full Name"
               onChange={handleChange}
-              className="w-full px-4 py-3 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-emerald-600"
+              className="w-full px-4 py-3 border rounded-lg bg-gray-50"
             />
           )}
 
           <input
             type="email"
             name="email"
-            placeholder="you@example.com"
             required
+            placeholder="you@example.com"
             onChange={handleChange}
-            className="w-full px-4 py-3 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-emerald-600"
+            className="w-full px-4 py-3 border rounded-lg bg-gray-50"
           />
 
           <input
             type="password"
             name="password"
-            placeholder="********"
             required
+            placeholder="********"
             onChange={handleChange}
-            className="w-full px-4 py-3 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-emerald-600"
+            className="w-full px-4 py-3 border rounded-lg bg-gray-50"
           />
 
-          {/* Submit Button */}
           <button
             disabled={loading}
-            className="w-full bg-emerald-800 text-white py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-emerald-900 transition"
+            className="w-full bg-emerald-800 text-white py-3 rounded-lg"
           >
-            {loading ? (
-              "Please wait..."
-            ) : isLogin ? (
-              <>
-                <FaUnlockAlt /> Sign In
-              </>
-            ) : (
-              <>
-                <FaUserPlus /> Create Account
-              </>
-            )}
+            {loading
+              ? "Please wait..."
+              : isLogin
+              ? "Sign In"
+              : "Create Account"}
           </button>
         </form>
 
-        {/* Switch Login/Signup */}
         <p className="mt-5 text-gray-700">
           {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
           <button
@@ -145,7 +127,6 @@ const Auth = () => {
           </button>
         </p>
 
-        {/* Back to Home */}
         <Link
           to="/"
           className="mt-6 flex items-center justify-center gap-2 text-gray-500 hover:text-gray-700 text-sm"
