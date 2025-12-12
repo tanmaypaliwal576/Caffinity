@@ -1,7 +1,8 @@
 <h1 align="center">☕ Caffinity – Full-Stack Coffee Experience</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Project-Full--Stack-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Frontend-React%20%2B%20Vite-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Backend-Node.js%20%7C%20Express-green?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Theme-Coffee%20UI-brown?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge" />
 </p>
@@ -15,25 +16,26 @@ https://caffinity.onrender.com/
 
 ## ☕ About the Project
 
-**Caffinity** is a beautifully designed **full-stack coffee-themed web application** built to deliver a warm, premium café experience on the web.  
-It combines a rich UI with responsive layouts and smooth flow, supported by a backend ready for integrations and future expansion.
+**Caffinity** is a beautifully crafted **full-stack coffee-themed application** designed using **React + Vite** on the frontend and **Node.js + Express** on the backend.
 
-This project highlights creativity, design sense, and modern development practices.
+It recreates a premium coffee shop experience on the web, with a warm UI, brand-focused design, and structured backend ready for real features like authentication, cart, and ordering.
 
 ---
 
 ## ⭐ Key Features
 
-### **Frontend**
-- Elegant, coffee-inspired UI  
-- Smooth transitions and warm color palette  
-- Responsive design for all screen sizes  
-- Product-style sections  
+### 🌟 **Frontend (React + Vite)**
+- Lightning-fast Vite-powered development  
+- Modular React components  
+- Fully responsive modern UI  
+- Clean animations & coffee-themed layout  
+- Clear folder structure  
 
-### **Backend**
-- Node.js backend structure ready for API handling  
-- Expandable architecture for authentication, orders, cart, database features  
-- Clean controller & routing boilerplate  
+### ⚙️ **Backend (Node + Express)**
+- Scalable Express routing  
+- Controllers for future features  
+- Ready for authentication & APIs  
+- Clean separation of logic  
 
 ---
 
@@ -41,9 +43,9 @@ This project highlights creativity, design sense, and modern development practic
 
 ### **Frontend**
 <p>
-  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
+  <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black"/>
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=FFFFFF"/>
+  <img src="https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
 </p>
 
 ### **Backend**
@@ -54,41 +56,44 @@ This project highlights creativity, design sense, and modern development practic
 
 ---
 
-## 🧩 Project Structure
+## 📂 Project Structure
 
 ```
 ├── backend/
-│   ├── controllers/       # API controllers (e.g., signup, cart, etc.)
-│   ├── routes/            # Routing layer
-│   ├── server.js          # Express server entry point
+│   ├── controllers/        # API logic (signup, cart, etc.)
+│   ├── routes/             # App routes
+│   ├── server.js           # Express server entry
 │   └── package.json
 │
-├── frontend/
-│   ├── index.html         # Main UI layout
-│   ├── style.css          # Styling & animations
-│   ├── script.js          # Frontend logic
-│   └── assets/            # Images, icons, graphics
+├── frontend/               # React + Vite app
+│   ├── src/
+│   │   ├── components/     # Reusable React components
+│   │   ├── pages/          # Page-level components
+│   │   ├── assets/         # Images, icons
+│   │   └── App.jsx
+│   ├── index.html
+│   ├── vite.config.js
+│   └── package.json
 │
-├── .gitignore
 └── README.md
 ```
-
 ---
 
-## 🔮 Future Enhancements
+## 🔮 Future Improvements
 
 - Fully functional cart system  
-- User authentication  
-- Admin dashboard  
-- Coffee product backend API  
-- Dark mode / light mode toggle  
-- Animations using GSAP / Framer Motion  
+- Authentication (Login/Signup)  
+- Admin panel for product management  
+- API integration with database  
+- Polished micro-animations  
+- Checkout flow  
 
 ---
 
 ## 🤝 Contributing  
-Contributions are welcome. Feel free to open an issue or submit a pull request.
+PRs and suggestions are welcome.
 
 ---
+
 ## 📚 License  
-Open-source under the MIT License.
+This project is open-source under MIT License.
