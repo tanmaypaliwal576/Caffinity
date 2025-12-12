@@ -90,11 +90,8 @@ The project recreates a premium café experience through warm visuals, clean UI 
 ---
 
 ## 🔮 Future Improvements
-
-- Fully functional cart system  
-- User authentication (Login/Signup)  
+ 
 - Admin product dashboard  
-- MongoDB integration for data  
 - Checkout & order management  
 - Enhanced animations  
 - Light/Dark mode toggle (easy with DaisyUI)  
