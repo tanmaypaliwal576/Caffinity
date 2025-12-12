@@ -2,9 +2,9 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Frontend-React%20%2B%20Vite-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Styling-TailwindCSS%20%2B%20DaisyUI-0ea5e9?style=for-the-badge&logo=tailwindcss&logoColor=white" />
   <img src="https://img.shields.io/badge/Backend-Node.js%20%7C%20Express-green?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Theme-Coffee%20UI-brown?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge" />
 </p>
 
 ---
@@ -16,26 +16,31 @@ https://caffinity.onrender.com/
 
 ## ☕ About the Project
 
-**Caffinity** is a beautifully crafted **full-stack coffee-themed application** designed using **React + Vite** on the frontend and **Node.js + Express** on the backend.
+**Caffinity** is a beautifully designed **full-stack coffee-themed web application** built using:
 
-It recreates a premium coffee shop experience on the web, with a warm UI, brand-focused design, and structured backend ready for real features like authentication, cart, and ordering.
+- **React + Vite** for the frontend  
+- **TailwindCSS + DaisyUI** for modern, responsive UI components  
+- **Node.js + Express** for backend routing and server logic  
+
+The project recreates a premium café experience through warm visuals, clean UI components, and a scalable backend architecture ready for future e-commerce features.
 
 ---
 
 ## ⭐ Key Features
 
-### 🌟 **Frontend (React + Vite)**
-- Lightning-fast Vite-powered development  
-- Modular React components  
-- Fully responsive modern UI  
-- Clean animations & coffee-themed layout  
-- Clear folder structure  
+### 🌟 **Frontend (React + Vite + TailwindCSS + DaisyUI)**
+- Tailwind utility-first styling for ultra-fast development  
+- DaisyUI components for beautiful, prebuilt UI elements  
+- Fully responsive layout across all devices  
+- Smooth page transitions & clean coffee-themed UI  
+- Organized component structure  
+- Optimized development/runtime with Vite  
 
 ### ⚙️ **Backend (Node + Express)**
-- Scalable Express routing  
-- Controllers for future features  
-- Ready for authentication & APIs  
-- Clean separation of logic  
+- REST API–ready backend structure  
+- Separated controllers & routes  
+- Scalable architecture for authentication, products, and cart  
+- Clean, maintainable codebase  
 
 ---
 
@@ -44,8 +49,9 @@ It recreates a premium coffee shop experience on the web, with a warm UI, brand-
 ### **Frontend**
 <p>
   <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black"/>
-  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=FFFFFF"/>
-  <img src="https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white"/>
+  <img src="https://img.shields.io/badge/TailwindCSS-0ea5e9?style=for-the-badge&logo=tailwindcss&logoColor=white"/>
+  <img src="https://img.shields.io/badge/DaisyUI-5A0EF0?style=for-the-badge&logo=daisyui&logoColor=white"/>
 </p>
 
 ### **Backend**
@@ -60,33 +66,38 @@ It recreates a premium coffee shop experience on the web, with a warm UI, brand-
 
 ```
 ├── backend/
-│   ├── controllers/        # API logic (signup, cart, etc.)
-│   ├── routes/             # App routes
-│   ├── server.js           # Express server entry
+│   ├── controllers/        # Business logic (login, cart, etc.)
+│   ├── routes/             # API routes
+│   ├── server.js           # Express server entry point
 │   └── package.json
 │
-├── frontend/               # React + Vite app
+├── frontend/
 │   ├── src/
-│   │   ├── components/     # Reusable React components
+│   │   ├── components/     # UI components (Tailwind + DaisyUI)
 │   │   ├── pages/          # Page-level components
 │   │   ├── assets/         # Images, icons
-│   │   └── App.jsx
+│   │   ├── App.jsx
+│   │   └── main.jsx
 │   ├── index.html
+│   ├── tailwind.config.js  # Tailwind + DaisyUI config
+│   ├── postcss.config.js
 │   ├── vite.config.js
 │   └── package.json
 │
 └── README.md
 ```
+
 ---
 
 ## 🔮 Future Improvements
 
 - Fully functional cart system  
-- Authentication (Login/Signup)  
-- Admin panel for product management  
-- API integration with database  
-- Polished micro-animations  
-- Checkout flow  
+- User authentication (Login/Signup)  
+- Admin product dashboard  
+- MongoDB integration for data  
+- Checkout & order management  
+- Enhanced animations  
+- Light/Dark mode toggle (easy with DaisyUI)  
 
 ---
 
@@ -96,4 +107,4 @@ PRs and suggestions are welcome.
 ---
 
 ## 📚 License  
-This project is open-source under MIT License.
+This project is open-source under the MIT License.
