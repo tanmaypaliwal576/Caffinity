@@ -24,6 +24,19 @@ app.use(
   })
 );
 
+// ----------------------------
+// Health Check Route
+// ----------------------------
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "OK",
+    message: "Server is healthy",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || "development",
+  });
+});
+
 // API Routes
 app.use("/api/auth", userRoutes);
 app.use("/api/products", productRoutes);
